@@ -3,6 +3,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 plugins {
 	kotlin("jvm") version "1.7.21"
 	id("io.gitlab.arturbosch.detekt") version "1.22.0"
+	id("maven-publish")
 }
 
 group = "rubber.dutch.hat"
@@ -46,4 +47,22 @@ detekt {
 	buildUponDefaultConfig = true
 	baseline = file("$rootDir/config/detekt/baseline.xml")
 	config = files("$rootDir/config/detekt/detekt.yml","$rootDir/config/detekt/detekt-custom.yml")
+}
+
+publishing {
+	repositories {
+		maven {
+			name = "GitHubPackages"
+			url = uri("https://maven.pkg.github.com/itrolegames/hat-game-event-api")
+			credentials {
+				username = System.getenv("GITHUB_ACTOR")
+				password = System.getenv("GITHUB_TOKEN")
+			}
+		}
+	}
+	publications {
+		register<MavenPublication>("gpr") {
+			from(components["java"])
+		}
+	}
 }
