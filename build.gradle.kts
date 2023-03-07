@@ -1,5 +1,8 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
+println("GITHUB_ACTOR=" + System.getenv("GITHUB_ACTOR"))
+println("GITHUB_TOKEN=" + System.getenv("GITHUB_TOKEN"))
+
 plugins {
 	kotlin("jvm") version "1.7.21"
 	id("io.gitlab.arturbosch.detekt") version "1.22.0"
