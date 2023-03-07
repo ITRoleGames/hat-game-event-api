@@ -1,6 +1,6 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
-System.getenv().forEach((k, v)->println("$k=$v")
+System.getenv().forEach { (k, v) -> println("$k=$v") }
 
 plugins {
   kotlin("jvm") version "1.7.21"
